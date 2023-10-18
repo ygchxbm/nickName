@@ -1,0 +1,5 @@
+颂哥，和平 安全监控平台 API文档如下
+http://11.180.179.137/cgame-security-api/docs
+
+user: root
+password: xdata_cgame_root
