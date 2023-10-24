@@ -49,9 +49,9 @@ export default defineComponent({
 });
 </script>
 
-<style>
-/* https://at.alicdn.com/t/font_2298093_y6u00apwst.css */
-@import url('./theme/iconfont.css');
-/* https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css */
-@import url('./theme/font-awesome.css');
-</style>
+<!--<style>-->
+<!--/* https://at.alicdn.com/t/font_2298093_y6u00apwst.css */-->
+<!--//@import url('./theme/iconfont.css');-->
+<!--/* https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css */-->
+<!--//@import url('./theme/font-awesome.css');-->
+<!--</style>-->

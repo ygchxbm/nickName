@@ -38,7 +38,9 @@ export function useTitle() {
 		} else {
 			webTitle = setTagsViewNameI18n(router.currentRoute.value);
 		}
-		document.title = (`${webTitle} - ${globalTitle}` || globalTitle);
+		// document.title = (`${webTitle} - ${globalTitle}` || globalTitle);
+		//change by hzb
+		document.title = (`${webTitle}`);
 	});
 }
 
