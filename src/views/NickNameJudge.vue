@@ -278,17 +278,16 @@ function clearFile() {
       width: 1200px;
       background: #ffffff;
       box-shadow: 0px -5px 10px -5px #efefef;
-      margin-top: 15px;
+      margin: 15px 0;
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
-      padding-top: 40px;
+      padding: 40px 0;
     }
     li {
       min-width: 250px;
       height: 50px;
       list-style: none;
-      margin: 5px;
+      margin:5px 5px 5px 35px;
       padding: 5px;
       border-radius: 8px;
       display: flex;
