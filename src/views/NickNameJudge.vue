@@ -2,6 +2,7 @@
 import axios from "axios";
 import {ref, onMounted} from "vue";
 import {Upload, Close} from '@element-plus/icons-vue'
+import { ElMessageBox } from 'element-plus'
 
 
 const languages = ref(['中文', '英文', '阿语', '俄语'])
@@ -29,6 +30,10 @@ let uploadingInp = ref(null);
 
 
 let isShowQuestionPrompt = ref(false);
+
+let answerArr=[];
+let accuracy;
+let isAnswerOver=ref(false);
 
 onMounted(() => {
   getNickNames();
@@ -86,7 +91,11 @@ function groupNames(realNames, aiNames, namesNumber,) {
 
 function selectOption(resultItem,item,optionIndex) {
   activeGroupIndexes.value[optionIndex]=resultItem.value;
-  console.log(activeGroupIndexes.value)
+  const obj={[optionIndex]:false}
+  if(resultItem.value==='正确'&&item.isRealName||resultItem.value==='错误'&&!item.isRealName){
+    Reflect.set(obj,optionIndex,true)
+  }
+  answerArr.push(obj)
 }
 
 function openFile(e) {
@@ -112,6 +121,28 @@ function clearFile() {
   isLanguageDisable.value = false;
   isNameStyleDisable.value = false;
   isNamesNumberDisable.value = false;
+}
+
+function submitQuestionnaire(){
+  if(Reflect.ownKeys(activeGroupIndexes.value).length ===Number(namesNumber.value)){
+    const rightNum=answerArr.filter(item=>{
+      return Object.values(item)[0]
+    }).length
+    accuracy=rightNum/Number(namesNumber.value).toFixed(2)*100
+    isAnswerOver.value=true;
+  }else {
+    ElMessageBox.alert('題目还未答完，请继续答题', '提示', {
+      // if you want to disable its autofocus
+      // autofocus: false,
+      confirmButtonText: 'OK',
+      // callback: (action) => {
+      //   ElMessage({
+      //     type: 'info',
+      //     message: `action: ${action}`,
+      //   })
+      // },
+    })
+  }
 }
 
 </script>
@@ -174,6 +205,15 @@ function clearFile() {
       <div id="questionPrompt" v-show="isShowQuestionPrompt">
         <div class="content">
           <span>请判断下面每组人名是否是真实人名</span>
+          <div v-if="isAnswerOver">
+            <span>正确率为：</span>
+            <span style="color: #719eff">{{accuracy}}%</span>
+          </div>
+          <div class="submitQuestionnaire">
+            <el-button type="primary" text @click="submitQuestionnaire" style="height: 30px;width: 80px;background:#4aa7ca;border:0;color: #FFFFFF">
+              提交答案
+            </el-button>
+          </div>
         </div>
       </div>
       <ul id="ulRoot">
@@ -260,7 +300,6 @@ function clearFile() {
       height: 60px;
       background: #ffffff;
       box-shadow: 0 10px 10px -5px #dedede;
-      //box-shadow: 0 1px 4px 0 rgba(0,0,0,.02), 0 2px 12px 0 rgba(0,0,0,.04);
       display: flex;
       justify-content: center;
       z-index: 1000;
@@ -272,6 +311,10 @@ function clearFile() {
         align-items: center;
         font-size: 18px;
         letter-spacing: 1px;
+        .submitQuestionnaire{
+          margin-right: 20px;
+          //color: #FFFFFF;
+        }
       }
     }
     #ulRoot {
