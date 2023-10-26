@@ -33,7 +33,9 @@ let isShowQuestionPrompt = ref(false);
 
 let answerArr=[];
 let accuracy;
+
 let isAnswerOver=ref(false);
+
 
 onMounted(() => {
   getNickNames();
@@ -206,7 +208,11 @@ function submitQuestionnaire(){
         <div class="content">
           <span>请判断下面每组人名是否是真实人名</span>
           <div v-if="isAnswerOver">
+<<<<<<< HEAD
             <span>正确率为：</span>
+=======
+            <span style="color: #74d89b">正确率为：</span>
+>>>>>>> 2123a902a109a10a24ab87c90904af663d211d0d
             <span style="color: #719eff">{{accuracy}}%</span>
           </div>
           <div class="submitQuestionnaire">
