@@ -56,7 +56,6 @@ function submitQuestionnaire() {
     isFinishAnswer.value = true;
   } else {
     ElMessageBox.alert('題目还未答完，请继续答题', '提示', {
-      // if you want to disable its autofocus
       // autofocus: false,
       confirmButtonText: 'OK',
       // callback: (action) => {
