@@ -16,7 +16,7 @@ export const constantRoutes: Array<RouteRecordRaw> = [
 		name: '/nickNameJudge',
 		component: () => import('@/views/NickNameJudge.vue'),
 		meta: {
-			title: '昵称比较',
+			title: '昵称判断',
 			roles: ['admin'],
 			icon: 'menu-trend',
 		},

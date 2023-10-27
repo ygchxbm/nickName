@@ -1,18 +1,18 @@
 <script setup>
 import axios from "axios";
 import {ref, onMounted} from "vue";
-import {Upload, Close} from '@element-plus/icons-vue'
-import { ElMessageBox } from 'element-plus'
+import {Upload, Close} from '@element-plus/icons-vue';
+import { ElMessageBox } from 'element-plus';
 
 
-const languages = ref(['中文', '英文', '阿语', '俄语'])
+const languages = ref(['中文', '英文', '阿语', '俄语']);
 let selectedLang = ref('中文');
 let isLanguageDisable = ref(false);
 const nameStyles = ['pubg', 'lGame'];
 let isNameStyleDisable = ref(false);
 let selectStyle = ref('pubg');
 
-let namesNumber = ref(100);
+let namesNumber = ref(12);
 let isNamesNumberDisable = ref(false);
 
 let referenceNames = [];
@@ -130,7 +130,7 @@ function submitQuestionnaire(){
     const rightNum=answerArr.filter(item=>{
       return Object.values(item)[0]
     }).length
-    accuracy=rightNum/Number(namesNumber.value).toFixed(2)*100
+    accuracy=(rightNum/Number(namesNumber.value)).toFixed(2)*100;
     isAnswerOver.value=true;
   }else {
     ElMessageBox.alert('題目还未答完，请继续答题', '提示', {
